@@ -29,9 +29,21 @@ Některé objekty mohou mít explicitně přiřazené jméno, obecně označovan
 
 '''Úkol A'''
 #? Najděte na Internetu, jakými funkcemi lze v Pythonu zjistit
-#? a) typ objektu
-#? b) identitu objektu (jeho adresu v paměti)
+#? a) typ objektu - Pro zjištění typu objektu slouží funkce type()
+#? b) identitu objektu (jeho adresu v paměti) - Identitu objektu (adresu v paměti) lze zjistit pomocí funkce id()
 #? Ukažte to na příkladech proměnných students_count, rating, is_published a vypište výstupy do konzole
+
+
+# Zjištění typu objektu
+print(type(students_count))
+print(type(rating))
+print(type(is_published))
+
+# Zjištění identity objektu (adresy v paměti)
+print(id(students_count))
+print(id(rating))
+print(id(is_published))
+
 
 # Numerické operátory
 # print(10 + 3)
@@ -72,6 +84,24 @@ hexadecimal = 0x12c #Hexadecimal Literal
 #? Pro toto binární číslo proveďte nejprve bitový posun o 2 bity vpravo, poté vypište výsledek v desítkové soustavě
 #? Proveďte bitový součin hexadecimálního čísla "1A" a vašeho binárního čísla a opět vypište v desítkové soustavě
 #? Výsledek zobrazte jako formátovaný řetězec - např. "Binární součin čísla 0b11010 a 0b10110101 je 0b10000"
+
+# Vytvoření binárního čísla
+myself_binary = 0b10101110
+
+# Výpis binárního čísla v desítkové soustavě
+print(f"Binární číslo 10101110 v desítkové soustavě je: {myself_binary}")
+
+# Bitový posun o 2 bity vpravo
+shifted_binary = myself_binary >> 2
+print(f"Po bitovém posunu o 2 bity vpravo je číslo: {shifted_binary}")
+
+# Bitový součin s hexadecimálním číslem 0x1A (1A = 26 v desítkové soustavě)
+hex_number = 0x1A
+soucin = myself_binary * hex_number
+# Vypis
+print(f"Bitový součin čísla {bin(myself_binary)} a hexadecimalniho cisla {hex(hex_number)} v desítkové soustavě je: {soucin}")
+print(f"Binární součin čísla {bin(myself_binary)} a {bin(hex_number)} je {bin(soucin)}")
+
 
 
 '''Python plně podporuje operace v plovoucí řádové čárce (tj. desetinná čísla). 
