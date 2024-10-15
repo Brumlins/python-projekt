@@ -151,10 +151,14 @@ funkční kód, tím lepší).
 
 1. Převeďte "česky" zadané datum - např. 12. 10. 2020 - do podoby "databázové" podoby - např. 2020-10-12
 '''
-datum = input("Zadejte datum (např.: 12. 10. 2020): ")
-datum = datum.replace(" ", "")
-den, mesic, rok=datum.split(".")
-print(f"{rok}-{mesic}-{den}")
+def ceske_to_databazove(datum):
+    """
+    Funkce na zmenu "ceskeho" data na "databazove" pomoci replace na vymazani vsech mezer, rozdeleni na den, mesic a rok s
+    rozdelovacem ".", ktery jsme pozadovali v inputu a naslede vypsani, prehozeni
+    """
+    datum = datum.replace(" ", "")
+    den, mesic, rok=datum.split(".")
+    print(f"{rok}-{mesic}-{den}")
 '''
 2. Vytvořte funkci, která vyrobí ze zadaného sousloví:
    a) identifikátor pro proměnné používané v Pythonu - např. To je proměnná v Pythonu = to_je_promenna_v_pythonu
@@ -163,17 +167,47 @@ print(f"{rok}-{mesic}-{den}")
    Kdo si chce úkol trochu zjednodušit, nemusí řešit znaky s českou diakritikou. 
    '''
 def souslovi_to_promenna(souslovi):
+    """
+    Funkce pro vytvoreni prvne promenne v Pythonu pomoci vymeny mezery za _ a premeny vsech znaku na male,
+    taky pro vytvoreni promenne v JavaScript syntaxu, pomoci rozdeleni slov pomoci mezer (a take vymeny vsech znaku
+    za male) a nasledne spojovani a zvetsovani prvnich pismen ve slovech (krome prvniho). A nakonec vypsani 
+    """
+    diaktritika = "ěščřžýáíéťůúóďň"
+    bez_diakritiky = "escrzyaietuuodn"
+    for i,j in zip(diaktritika,bez_diakritiky):
+        souslovi=souslovi.replace(i,j)
     js = souslovi
+    #vytvoreni promenne v Pythonu
     souslovi=souslovi.replace(" ","_").lower()
-    print(f"python: {souslovi}")
-    while(js.find(" ")):
-
-
-souslovi_to_promenna(input("Zadej sousloví na přeměnu do proměnné: "))
+    #vytvoreni promenne v JS syntaxu
+    slova = js.lower().split(" ")
+    js = slova[0] + ''.join([slovo.capitalize() for slovo in slova[1:]])
+    print(f"python: {souslovi}\njs: {js}")
+    
 
 '''
     3. Vytvořte funkci, která vygeneruje náhodná hesla pro počet osob zadaný v parametru tak, aby heslo začínalo
     3 velkými písmeny, pokračovalo 3 malými písmeny, jedním speciálním znakem (-/+*) a končilo 3 náhodnými číslicemi.
 '''
+from random import *
+import string
 
-# def generate_heslo():
+def generate_heslo(pocet):
+    """
+    Funkce pro vygenerovani tolik hesel, kolik zada uzivatel do parametru. Ve funkci for je range nastaveny na pocet hesel,
+    v samotnem foru s importem knihovny random vybereme nahodny znak ze stringu (opet pomoci pridani knihovny string)
+    ascii_uppercase, pak 3 lowercase, pak z vybranych znaku ze zadani a nakonec 3 cifry. Jelikoz pridavame vsechny znaky pojednom
+    do pole, predelame zpusobem ''.join() na string, ktery i vypiseme vcetne indexu hesla
+    """
+    for i in range(0,pocet):
+        heslo=(choices(string.ascii_uppercase, k=3))
+        heslo+=(choices(string.ascii_lowercase, k=3))
+        heslo+=(choices("-/+*", k=1))
+        heslo+=(choices("0123456789", k=3))
+        heslo_=''.join(heslo)
+        print(f"heslo cislo {i+1}: {heslo_}")
+
+
+ceske_to_databazove(input("Zadejte datum (např.: 12. 10. 2020): "))
+souslovi_to_promenna(input("Zadej sousloví na přeměnu do proměnné: "))
+generate_heslo(int(input("Zadej množství osob: ")))

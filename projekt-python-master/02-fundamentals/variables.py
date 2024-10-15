@@ -33,16 +33,9 @@ Některé objekty mohou mít explicitně přiřazené jméno, obecně označovan
 #? b) identitu objektu (jeho adresu v paměti) - Identitu objektu (adresu v paměti) lze zjistit pomocí funkce id()
 #? Ukažte to na příkladech proměnných students_count, rating, is_published a vypište výstupy do konzole
 
-
-# Zjištění typu objektu
-print(type(students_count))
-print(type(rating))
-print(type(is_published))
-
-# Zjištění identity objektu (adresy v paměti)
-print(id(students_count))
-print(id(rating))
-print(id(is_published))
+promenne=[students_count, rating, is_published]
+for i in promenne:
+    print(f"Typ: {type(i)}\nID: {id(i)}\n")
 
 
 # Numerické operátory
@@ -81,26 +74,19 @@ hexadecimal = 0x12c #Hexadecimal Literal
 #? Do proměnné myself_binary uložte binární číslo vytvořené na základě osmi prvních znaků z vašeho jména a příjmení (souhláska = 1, samohláska 0)
 #? Příklad - HildaDok: 10110101
 #? Vypište toto binární číslo v desítkové soustavě
+myself_binary = 0b10101101
+print(f"Tomáš Řeh\n10101 101: {myself_binary}\n")
+
 #? Pro toto binární číslo proveďte nejprve bitový posun o 2 bity vpravo, poté vypište výsledek v desítkové soustavě
+posun = myself_binary >> 2
+print(f"Posunute binarni cislo o 2 vpravo: {posun}\n")
+
 #? Proveďte bitový součin hexadecimálního čísla "1A" a vašeho binárního čísla a opět vypište v desítkové soustavě
+vysledek=myself_binary * 0x1A
+print(f"{0x1A} + {bin(myself_binary)} = {vysledek}\n")
+
 #? Výsledek zobrazte jako formátovaný řetězec - např. "Binární součin čísla 0b11010 a 0b10110101 je 0b10000"
-
-# Vytvoření binárního čísla
-myself_binary = 0b10101110
-
-# Výpis binárního čísla v desítkové soustavě
-print(f"Binární číslo 10101110 v desítkové soustavě je: {myself_binary}")
-
-# Bitový posun o 2 bity vpravo
-shifted_binary = myself_binary >> 2
-print(f"Po bitovém posunu o 2 bity vpravo je číslo: {shifted_binary}")
-
-# Bitový součin s hexadecimálním číslem 0x1A (1A = 26 v desítkové soustavě)
-hex_number = 0x1A
-soucin = myself_binary * hex_number
-# Vypis
-print(f"Bitový součin čísla {bin(myself_binary)} a hexadecimalniho cisla {hex(hex_number)} v desítkové soustavě je: {soucin}")
-print(f"Binární součin čísla {bin(myself_binary)} a {bin(hex_number)} je {bin(soucin)}")
+print(f"Binární součin čísla {bin(myself_binary)} a {bin(0x1A)} je {bin(vysledek)}")
 
 
 
@@ -168,5 +154,3 @@ Speciální proměnná _ reprezentuje předešlý výsledek.
 Varování: Hodnota proměnné _ by nikdy neměla být modifikována uživatelem. 
 Pokud byste jí přiřadili hodnotu, vytvořili byste nezávislou lokální proměnnou se stejným jménem, 
 která by zakryla interní proměnnou s tímto chováním.'''
-
-
