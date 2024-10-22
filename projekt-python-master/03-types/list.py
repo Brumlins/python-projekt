@@ -9,6 +9,7 @@ https://www.youtube.com/watch?v=_uQrJ0TkZlc&list=PLDDhGQzLtPdbS987RIIT8WKwb-L_K2
 https://www.w3schools.com/python/python_lists.asp
 https://macek.sandbox.cz/texty/python-tutorial-cz/tut/node5.html
 '''
+import string
 
 '''
 Příklady různých seznamů v Pythonu:
@@ -56,11 +57,11 @@ print(f'\tVypíše každý druhý prvek ze seznamu letters: {letters[::2]}')
 # ??? 1. cvičení ???
 # Doplňte podle zadání chybějící u následujících tří výpisů
 print('\n1. Cvičení\n***********************************************************************************************')
-print(f'\tVypíše poslední 2 prvky ze seznamu numbers: ???')
-print(f'\tVypíše každý sudý prvek ze seznamu letters: ???')
-print(f'\tVypíše všechny hodnoty z mixed_list kromě dvou posledních: ???')
-print(f'\tVypíše hodnotu prvku name ze slovníku umístěného v seznamu mixed_list: ???')
-print(f'\tVypíše hodnotu předposledního čísla z listu numbers umístěného v seznamu mixed_list: ???')
+print(f'\tVypíše poslední 2 prvky ze seznamu numbers: {numbers[-2:]}')
+print(f'\tVypíše každý sudý prvek ze seznamu letters: {letters[1::2]}')
+print(f'\tVypíše všechny hodnoty z mixed_list kromě dvou posledních: {mixed_list[:-2]}')
+print(f'\tVypíše hodnotu prvku name ze slovníku umístěného v seznamu mixed_list: {mixed_list[-1]["name"]}')
+print(f'\tVypíše hodnotu předposledního čísla z listu numbers umístěného v seznamu mixed_list: {mixed_list[-2][1][-2]}')
 print('***********************************************************************************************\n')
 # ??? Konec 1. cvičení ???
 
@@ -283,10 +284,39 @@ print(f'\tSbalení seznamů do proměnné values: {values}\n')
 # Snažte se vždy o co nejzhuštěnější kód - ideálně na 1 řádku (+ další řádek s kontrolním výpisem proměnné)
 # import knihovny pro generování náhodných čísel
 from random import randint
-
+from random import *
 print(f'\n*************************************\nCvičení 2\n*************************************')
 
+hundreds=[i for i in range(1,2001) if i%200==0]
+print(hundreds)
 
+ascii1=[]
+for i in range(0,49):
+    ascii1+=choices(string.ascii_uppercase)
+print(ascii1)
+
+del hundreds[:3]
+del hundreds[-3:]
+print(hundreds)
+
+unique=[i for i in ascii1 if not ascii1.count(i)>1]
+# for znak in ascii1:
+#     x=0
+#     for i in unique:
+#         if znak==i:
+#             x=1
+#     if x==0:
+#         unique+=znak
+print(unique)
+
+
+combine = [(ascii1[x], i) for x, i in enumerate(hundreds)]
+# combine=[]
+# x=0
+# for i in hundreds:
+#     combine.append((ascii1[x],i))
+#     x = x + 1
+print(combine)
 
 # ??? 3. cvičení ???
 # a) Přidejte do listu persons ještě n-tice (tuples) dalších 2 žen a 2 mužů.
