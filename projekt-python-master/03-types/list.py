@@ -319,12 +319,41 @@ combine = [(ascii1[x], i) for x, i in enumerate(hundreds)]
 print(combine)
 
 # ??? 3. cvičení ???
+
+print(f'\n*************************************\nCvičení 3\n*************************************')
+
 # a) Přidejte do listu persons ještě n-tice (tuples) dalších 2 žen a 2 mužů.
+
+persons+=('Honza',15,'muž'),('Filip',18,'muž'),('Natálie',16,'žena'),('Denisa',26,'žena')
 # b) Použijte seznam (list) persons a do proměnné women z něj pomocí lambda výrazu i comprehensions vyhledejte všechny ženy.
 # Seznam jmen žen poté vypište na samostatné řádky. Každý vypsaný řádek bude podtržen pomlčkami přesně podle délky jména.
+
+women = list(filter(lambda clovek: clovek[2] == 'žena', persons))
+
+women1 = [clovek[0] for clovek in persons if clovek[2] == "žena"]
+
+for i in women1:
+    print(f"{i}\n{"-"*len(i)}")
+
+# for zena in women:
+#     print(zena[0])
+#     pomlcky = 0
+#     for pismeno in zena[0]:
+#         pomlcky += 1
+#     print("-"*pomlcky)
+
+
 # c) Použijte seznam (list) persons a do proměnné ipeople z něj pomocí lambda výrazu i comprehensions vyhledejte všechny osoby
 # obsahující ve jméně písmeno "i". Obsah listu ipeople poté převeďte do podoby řetězce, který bude odpovídat struktuře csv souboru.
 # Kromě jména, věku a pohlaví v něm budou vypsána i čísla indexů (jako 1. sloupec). Oddělovačem bude středník.
 # Záznamy budou seřazeny podle věku (sestupně).
 
-print(f'\n*************************************\nCvičení 3\n*************************************')
+ipeople = list(filter(lambda person: 'i' in person[0].lower(), persons))
+ipeople_sorted = sorted(ipeople, key=lambda person: person[1], reverse=True)
+
+csv_output = "Index;Jmeno;Věk;Pohlavi\n"
+for index, person in enumerate(ipeople_sorted, start=1):
+    csv_output += f"{index};{person[0]};{person[1]};{person[2]}\n"
+
+# Výstup CSV
+print(csv_output)
